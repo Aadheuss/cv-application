@@ -1,6 +1,12 @@
 import emailIcon from "./assets/email.svg";
 import phoneIcon from "./assets/phone.svg";
 import mapMarkerIcon from "./assets/map-marker.svg";
+import { format } from "date-fns";
+
+function formatDate(date) {
+  console.log(typeof date);
+  return format(new Date(date), "MMMM Q yyyy");
+}
 
 function EducationItem({
   schoolName,
@@ -16,7 +22,7 @@ function EducationItem({
       </div>
       <div>
         <div>
-          {educationStartDate} - {educationEndDate}
+          {formatDate(educationStartDate)} - {formatDate(educationEndDate)}
         </div>
       </div>
     </>
@@ -40,8 +46,6 @@ function CV({ personalInfoInput, educationInput, educationList }) {
   function isNotEmpty(value) {
     return value !== "";
   }
-
-  console.log(personalInfoInput);
 
   return (
     <article className="cv">
