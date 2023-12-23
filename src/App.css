@@ -1,36 +1,221 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.icon {
+  width: 40px;
+  height: 40px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.icon-dec {
+  width: 1.25em;
+  height: 1.25em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.personal-info-container input {
+  border-radius: 4px;
+  padding: 0.25em;
+  border: 1px solid #000000;
+}
+
+.personal-info-container label {
+  font-weight: 500;
+}
+
+.personal-info, 
+.education {
+  background-color: #fefefe;
+  margin: 1rem;
+  border-radius: 4px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 2rem 1.5rem;
+}
+
+.personal-info > h1,
+.cv-heading > h1, 
+.education > h1 {
+  margin: 0;
+}
+
+.personal-info > h1,
+.education > h1 {
+  align-self: start;
+  font-size: clamp(1.25rem, calc(1.25rem + calc(0.4vh + 0.4vw)), 2.5rem);
+} 
+
+.personal-info > div, 
+.education-form > div:not(.button-container) {
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+}
+
+.personal-info label,
+.education label {
+  text-align: start;
+}
+
+.education h1 {
+  display: flex;
+  align-items: end;
+  gap: 0.25em;
+}
+
+.cv {
+  aspect-ratio: 8.5/11;
+  background-color: #fefefe;
+  margin: 1rem;
+}
+
+header.cv-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  height: 150px;
+  background-color: #add8e6;
+}
+
+.cv-heading > h1 {
+  font-size: clamp(1.5rem, calc(1.5rem + calc(0.75vh + 0.75vw)), 3rem);
+}
+
+.cv .contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+}
+
+.cv .contact-info > div {
+  display: flex;
+  font-weight: 500;
+  gap: 0.25em;
+  align-items: center;
+}
+
+.cv-body {
+  padding: 1.5rem;
+}
+
+.cv-body  h2, 
+.cv-body h3 {
+  margin: 0;
+}
+
+.cv-education {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: start;
+}
+
+.education-list {
+  padding: 0;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  list-style: none;
+}
+
+.education-list li {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-list li .education-editable {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 0;
+  margin: 0;
+}
+
+.education-list li .delete-education {
+  display: flex;
+}
+
+.education-list li .delete-education button {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+.education-list li .delete-education img {
+  padding: 0;
+}
+
+.education-list li button{
+  background-color: #add8e6;
+  text-align: start;
+  border-radius: 0;
+  padding: 0.25;
+}
+
+.cv-education h2 {
+  background-color: #e0e0e0;
+  padding: 0.25em;
+  width: 100%;
+}
+
+.cv-education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.education-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+}
+
+.education-item > div {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.education-item > :last-child {
+  display: flex;
+  justify-content: center;
+  padding-left: 1em;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.button-container button {
+  padding: 0.5em;
+}
+
+.button-container .save {
+  background-color: #add8e6;
+}
+
+.button-container .cancel {
+  border: 1px solid #a8a8a8;
 }
 
 .card {
