@@ -4,8 +4,7 @@ import mapMarkerIcon from "./assets/map-marker.svg";
 import { format } from "date-fns";
 
 function formatDate(date) {
-  console.log(typeof date);
-  return format(new Date(date), "MMMM Q yyyy");
+  return date ? format(new Date(date), "MMMM Q yyyy") : null;
 }
 
 function EducationItem({
@@ -22,7 +21,8 @@ function EducationItem({
       </div>
       <div>
         <div>
-          {formatDate(educationStartDate)} - {formatDate(educationEndDate)}
+          {formatDate(educationStartDate)} {educationStartDate !== "" && "-"}
+          {formatDate(educationEndDate)}
         </div>
       </div>
     </>
@@ -30,13 +30,14 @@ function EducationItem({
 }
 
 function createEducationList(educationList) {
+  console.log(educationList);
   return educationList.map((education) => (
     <li key={education.id} className="education-item">
       <EducationItem
         schoolName={education.schoolName}
         fieldOfStudy={education.fieldOfStudy}
-        educationStartDate={education.educationStartDate}
-        educationEndDate={education.educationEndDate}
+        educationStartDate={education.startDate}
+        educationEndDate={education.endDate}
       />
     </li>
   ));

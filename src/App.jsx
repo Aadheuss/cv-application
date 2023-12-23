@@ -9,8 +9,8 @@ function App() {
     {
       schoolName: "Harvard",
       fieldOfStudy: "Physics",
-      educationStartDate: "2025-08-08",
-      educationEndDate: "2028-09-30",
+      startDate: "2025-08-08",
+      endDate: "2028-09-30",
       id: 0,
     },
   ]);
@@ -66,21 +66,17 @@ function App() {
 
   function handleOnSubmitEducationList(e) {
     e.preventDefault();
-    // setEducationList([
-    //   ...educationList,
-    //   {
-    //     schoolName,
-    //     fieldOfStudy,
-    //     educationStartDate,
-    //     educationEndDate,
-    //     id: educationId,
-    //   },
-    // ]);
-    // setSchoolName("");
-    // setFieldOfStudy("");
-    // setEducationStartDate("");
-    // setEducationEndDate("");
-    // setEducationId(educationId + 1);
+    setEducationList([
+      ...educationList,
+      { ...educationInput, id: educationId },
+    ]);
+    setEducationInput({
+      schoolName: "",
+      fieldOfStudy: "",
+      startDate: "",
+      endDate: "",
+    });
+    setEducationId(educationId + 1);
   }
 
   function handleOnSubmitEducationListEdit(e) {
