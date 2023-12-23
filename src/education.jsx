@@ -8,6 +8,8 @@ function EducationForm({
   educationInput,
   onSubmit = null,
   onClickOnViewHandler = null,
+  cancel = { ariaLabel: null },
+  Submit = { ariaLabel: null },
 }) {
   return (
     <form className="education-form" onSubmit={onSubmit}>
@@ -50,14 +52,14 @@ function EducationForm({
       <div className="button-container">
         <Button
           className="cancel"
-          ariaLabel={"cancel education info"}
+          ariaLabel={cancel.arialabel}
           text={"cancel"}
           onClick={onClickOnViewHandler}
         />
         <Button
           className="save"
           type="submit"
-          ariaLabel={"save education info"}
+          ariaLabel={Submit.ariaLabel}
           text={"save"}
         />
       </div>
@@ -66,20 +68,22 @@ function EducationForm({
 }
 
 function createEducationList({
-  educationInput,
+  educationEdit,
   educationList,
   educationOnView,
 }) {
   return educationList.value.map((education) => {
     return (
-      <li key={education.id} className={education.id}>
+      <li key={education.id} className="education-editable-container">
         <div className="education-editable">
           <Button
+            className="edit-education"
             text={education.schoolName}
-            onClick={() => educationOnView.onClickEducation(education.id)}
+            onClick={() => educationOnView.onClickView(education.id)}
           />
           <div className="delete-education">
             <Button
+              className="delete-education"
               onClick={() => educationList.onClickDelete(education.id)}
               ariaLabel={"edit " + education.schoolName + " education"}
             >
@@ -91,12 +95,36 @@ function createEducationList({
             </Button>
           </div>
         </div>
+        {educationOnView.id === education.id && (
+          <EducationForm
+            educationInput={educationEdit}
+            onClickOnViewHandler={() => educationOnView.onClickView(null)}
+            onSubmit={(e) => educationList.onSubmitEdit(e, education.id)}
+            cancel={{
+              ariaLabel:
+                "close and cancel editing" +
+                educationEdit.schoolName +
+                educationEdit.fieldOfStudy,
+            }}
+            Submit={{
+              ariaLabel:
+                "submit edit" +
+                +educationEdit.schoolName +
+                educationEdit.fieldOfStudy,
+            }}
+          />
+        )}
       </li>
     );
   });
 }
 
-function Education({ educationInput, educationList, educationOnView }) {
+function Education({
+  educationEdit,
+  educationInput,
+  educationList,
+  educationOnView,
+}) {
   const [onView, setOnView] = useState(false);
 
   function onClickOnViewHandler() {
@@ -110,20 +138,29 @@ function Education({ educationInput, educationList, educationOnView }) {
       </h1>
       <ul className="education-list">
         {createEducationList({
-          educationInput,
+          educationEdit,
           educationList,
           educationOnView,
         })}
-        {!onView ? (
-          <Button onClick={onClickOnViewHandler} text="Add Education" />
-        ) : (
+      </ul>
+      {!onView ? (
+        <Button
+          className="add-education"
+          onClick={onClickOnViewHandler}
+          text="Add Education"
+        />
+      ) : (
+        <section className="add-education-container">
+          <h2>Add Education info</h2>
           <EducationForm
             educationInput={educationInput}
             onSubmit={educationList.onSubmit}
             onClickOnViewHandler={onClickOnViewHandler}
+            cancel={{ ariaLabel: "close and cancel adding education info" }}
+            Submit={{ ariaLabel: "submit education info" }}
           />
-        )}
-      </ul>
+        </section>
+      )}
     </div>
   );
 }

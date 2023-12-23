@@ -113,7 +113,8 @@ header.cv-heading {
 }
 
 .cv-body  h2, 
-.cv-body h3 {
+.cv-body h3 , 
+.education h2 {
   margin: 0;
 }
 
@@ -136,6 +137,13 @@ header.cv-heading {
 .education-list li {
   display: flex;
   flex-direction: column;
+}
+
+.education-editable-container,
+.add-education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .education-list li .education-editable {
@@ -161,11 +169,17 @@ header.cv-heading {
   padding: 0;
 }
 
-.education-list li button{
-  background-color: #add8e6;
+.education-list .edit-education {
+  font-weight: 700;
+  overflow: hidden;
+  background-color: #7CD2B3;
+  padding: 0 0.5em;
+}
+
+.education-list .edit-education,
+.education-list .delete-education {
   text-align: start;
-  border-radius: 0;
-  padding: 0.25;
+  border-radius: 2;
 }
 
 .cv-education h2 {
@@ -216,6 +230,12 @@ header.cv-heading {
 
 .button-container .cancel {
   border: 1px solid #a8a8a8;
+}
+
+button.add-education {
+  width: 100%;
+  border-radius: 2;
+  background-color: #e0e0e0;;
 }
 
 .card {

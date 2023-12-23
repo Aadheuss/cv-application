@@ -17,10 +17,10 @@ function App() {
   const [educationId, setEducationId] = useState(educationList.length);
   const [educationOnView, setEducationOnView] = useState(null);
   const [personalInfoInput, setPersonalInfoInput] = useState({
-    name: "Archer Aeren",
-    email: "ArcherAeren@gmail.com",
+    name: "Alexander köhler",
+    email: "Alaxenderköhler@gmail.com",
     phone: "123456789",
-    address: "Berlin, german",
+    address: "Berlin, germany",
   });
   const [educationInput, setEducationInput] = useState({
     schoolName: "MIT",
@@ -29,7 +29,7 @@ function App() {
     endDate: "2028-07-08",
   });
   const [educationEdit, setEducationEdit] = useState({
-    schoolName: "",
+    schoolName: "Cool",
     fieldOfStudy: "",
     educationStartDate: "",
     educationEndDate: "",
@@ -41,7 +41,7 @@ function App() {
 
   function handleOnChangePersonalInfoInput(e, property) {
     const value = e.target.value;
-    setEducationInput({ ...personalInfoInput, [property]: value });
+    setPersonalInfoInput({ ...personalInfoInput, [property]: value });
   }
 
   function handleOnChangeEducationInput(e, property) {
@@ -49,14 +49,18 @@ function App() {
     setEducationInput({ ...educationInput, [property]: value });
   }
 
-  function findEducationItemById(id) {
-    return educationList.filter((item) => {
-      return item.id === id;
-    });
+  function handleOnChangeEducationEdit(e, property) {
+    const value = e.target.value;
+    setEducationEdit({ ...educationEdit, [property]: value });
   }
 
-  function handleOnCLickEducationOnView(id) {
+  function findEducationItemById(id) {
+    return educationList.find((item) => item.id === id);
+  }
+
+  function handleOnClickEducationItemOnView(id) {
     setEducationOnView(id);
+    setEducationEdit(findEducationItemById(id));
   }
 
   function handleOnClickDelete(id) {
@@ -79,18 +83,11 @@ function App() {
     setEducationId(educationId + 1);
   }
 
-  function handleOnSubmitEducationListEdit(e) {
+  function handleOnSubmitEducationListEdit(e, id) {
     e.preventDefault();
-    // setEducationList([
-    //   ...educationList,
-    //   {
-    //     schoolName,
-    //     fieldOfStudy,
-    //     educationStartDate,
-    //     educationEndDate,
-    //     id: educationId,
-    //   },
-    // ]);
+    console.log(educationEdit);
+    const filteredItem = educationList.filter((item) => item.id !== id);
+    setEducationList([...filteredItem, { ...educationEdit, id: id }]);
   }
 
   return (
@@ -108,6 +105,10 @@ function App() {
               value: educationInput,
               onChange: handleOnChangeEducationInput,
             }}
+            educationEdit={{
+              value: educationEdit,
+              onChange: handleOnChangeEducationEdit,
+            }}
             educationList={{
               value: educationList,
               onSubmit: handleOnSubmitEducationList,
@@ -116,9 +117,8 @@ function App() {
             }}
             educationOnView={{
               id: educationOnView,
-              value: educationEdit,
-              onClickEducation: handleOnCLickEducationOnView,
-              onClickEducationEdit: handleOnViewEducationEdit,
+              input: findEducationItemById,
+              onClickView: handleOnClickEducationItemOnView,
             }}
           />
         </div>
