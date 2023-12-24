@@ -1,7 +1,6 @@
-function Input({
+function TextArea({
   id = null,
   text = "",
-  type = "text",
   placeholder = "",
   inputVal,
   onChangeHandler,
@@ -9,16 +8,15 @@ function Input({
   return (
     <>
       <label htmlFor={id}>{text}</label>
-      <input
+      <textarea
         id={id}
         placeholder={placeholder}
-        type={type}
         name={id}
-        value={inputVal}
         onChange={onChangeHandler}
-      />
+        value={inputVal}
+      ></textarea>
     </>
   );
 }
 
-export default Input;
+export default TextArea;

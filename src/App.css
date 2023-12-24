@@ -35,7 +35,8 @@ body {
 }
 
 .personal-info, 
-.education {
+.education,
+.experience {
   background-color: #fefefe;
   margin: 1rem;
   border-radius: 4px;
@@ -48,18 +49,25 @@ body {
 
 .personal-info > h1,
 .cv-heading > h1, 
-.education > h1 {
+.education > h1,
+.experience > h1,
+.cv-body h2,
+.cv-body h3,
+.education h2,
+.experience h2 {
   margin: 0;
 }
 
 .personal-info > h1,
-.education > h1 {
+.education > h1,
+.experience > h1 {
   align-self: start;
   font-size: clamp(1.25rem, calc(1.25rem + calc(0.4vh + 0.4vw)), 2.5rem);
 } 
 
 .personal-info > div, 
-.education-form > div:not(.button-container) {
+.education-form > div:not(.button-container),
+.experience-form> div:not(.button-container) {
   display: flex;
   width: 250px;
   flex-direction: column;
@@ -70,7 +78,8 @@ body {
   text-align: start;
 }
 
-.education h1 {
+.education h1,
+.experience h1 {
   display: flex;
   align-items: end;
   gap: 0.25em;
@@ -112,20 +121,26 @@ header.cv-heading {
   padding: 1.5rem;
 }
 
-.cv-body  h2, 
-.cv-body h3 , 
-.education h2 {
+.cv-body .desc {
+  padding: 0;
   margin: 0;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+.cv-body .position {
+  font-style: italic;
 }
 
-.cv-education {
+.cv-education, 
+.cv-experience {
   display: flex;
   gap: 1rem;
   flex-direction: column;
   align-items: start;
 }
 
-.education-list {
+.education-list,
+.experience-list {
   padding: 0;
   width: 250px;
   display: flex;
@@ -134,19 +149,23 @@ header.cv-heading {
   list-style: none;
 }
 
-.education-list li {
+.education-list li,
+.experience-list li {
   display: flex;
   flex-direction: column;
 }
 
 .education-editable-container,
-.add-education-container {
+.add-education-container,
+.experience-editable-container,
+.add-experience-container {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
 
-.education-list li .education-editable {
+.education-editable, 
+.experience-editable {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -154,11 +173,13 @@ header.cv-heading {
   margin: 0;
 }
 
-.education-list li .delete-education {
+.education-list li .delete-education,
+.experience-list li .delete-experience {
   display: flex;
 }
 
-.education-list li .delete-education button {
+.delete-education button,
+.delete-experience button {
   display: flex;
   position: relative;
   width: 100%;
@@ -169,7 +190,8 @@ header.cv-heading {
   padding: 0;
 }
 
-.education-list .edit-education {
+.education-list .edit-education,
+.experience-list .edit-experience {
   font-weight: 700;
   overflow: hidden;
   background-color: #7CD2B3;
@@ -177,37 +199,44 @@ header.cv-heading {
 }
 
 .education-list .edit-education,
-.education-list .delete-education {
+.education-list .delete-education,
+.experience-list .edit-experience,
+.experience-list .delete-experience {
   text-align: start;
   border-radius: 2;
 }
 
-.cv-education h2 {
+.cv-education h2,
+.cv-experience h2 {
   background-color: #e0e0e0;
   padding: 0.25em;
   width: 100%;
 }
 
-.cv-education-list {
+.cv-education-list, 
+.cv-experience-list {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
-.education-item {
+.education-item, 
+.experience-item {
   width: 100%;
   display: grid;
   grid-template-columns: 2.5fr 1fr;
 }
 
-.education-item > div {
+.education-item > div,
+.experience-item > div {
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: start;
 }
 
-.education-item > :last-child {
+.education-item > :last-child,
+.experience-item > :last-child {
   display: flex;
   justify-content: center;
   padding-left: 1em;
@@ -232,10 +261,9 @@ header.cv-heading {
   border: 1px solid #a8a8a8;
 }
 
-button.add-education {
-  width: 100%;
-  border-radius: 2;
-  background-color: #e0e0e0;;
+button.add-education ,
+button.add-experience {
+  border: 1px solid #e0e0e0;;
 }
 
 .card {
