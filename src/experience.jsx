@@ -1,6 +1,6 @@
 import Button from "./button";
 import { useState } from "react";
-import experienceIcon from "./assets/briefCase.svg";
+import experienceIcon from "./assets/briefcase.svg";
 import Input from "./input";
 import deleteFOutline from "./assets/delete-f-outline.svg";
 import TextArea from "./textarea";
